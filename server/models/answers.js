@@ -7,10 +7,7 @@ const answerSchema = new mongoose.Schema({
     ref: 'users'
   },
   jawaban: String,
-  questionId: [{
-    type: Schema.Types.ObjectId,
-    ref: 'questions'
-  }],
+  questionId: { type: Schema.Types.ObjectId, ref: 'questions' },
   suka: [{
     type: Schema.Types.ObjectId,
     ref: 'users'
@@ -21,6 +18,6 @@ const answerSchema = new mongoose.Schema({
   }]
 })
 
-const answers = mongoose.model('answer', answerSchema)
+const answers = mongoose.model('answers', answerSchema)
 
 module.exports = answers

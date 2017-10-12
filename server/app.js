@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose')
+var cors = require('cors')
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -12,8 +13,9 @@ var question = require('./routes/question')
 var answer = require('./routes/answer')
 
 var app = express();
+app.use(cors())
 
-mongoose.connect(`mongodb://jainal:pakuhaji@cluster0-shard-00-00-yo6se.mongodb.net:27017,cluster0-shard-00-01-yo6se.mongodb.net:27017,cluster0-shard-00-02-yo6se.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin`, (err)=>{
+mongoose.connect('mongodb://localhost/hactivoverflow-local', (err)=>{
   if(!err){
     console.log('Database sudah terhubung')
   } else {

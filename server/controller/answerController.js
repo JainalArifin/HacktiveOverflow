@@ -1,4 +1,5 @@
 const Answer = require('../models/answers')
+const Question = require('../models/questions')
 const ObjectId = require('mongoose').ObjectId
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -19,23 +20,61 @@ const findAllAnswer = (req, res) => {
 
 const createAnswer = (req, res) => {
   let answer = jwt.verify(req.headers.token, process.env.SECRET, (err, answer) => {
-    Answer.create({
-      author: answer.id,
-      jawaban: req.body.jawaban,
-      questionId: [],
-      suka:[],
-      tidakSuka:[]
-    })
-    .then((dataAnswer) => {
-      res.send({
-        message: 'data Answer berhasil di buat',
-        dataAnswer: dataAnswer
+    console.log(answer.id, '<----- ini answer ----');
+    Question.findById(req.params.id)
+    .then((dataQuestion) => {
+      Answer.create({
+        author: answer.id,
+        jawaban: req.body.jawaban,
+        questionId: req.params.id,
+      })
+      .then((dataAnswer) => {
+        dataQuestion.answerId.push(dataAnswer)
+        res.send(dataAnswer)
+
+        dataQuestion.save((err, updateQuestion) => {
+          if(err){
+
+          }
+          else {
+
+          }
+        })
+      })
+      .catch((err) => {
+        res.send(err)
       })
     })
     .catch((err) => {
       console.log(err);
     })
   })
+
+  // let answer = jwt.verify(req.headers.token, process.env.SECRET, (err, answer) => {
+  //   Answer.create({
+  //     jawaban: req.body.jawaban,
+  //     author: answer.id
+  //   })
+  //   .then((dataAnswer) => {
+  //     Question.updateOne({
+  //       _id: req.params.id
+  //     },{
+  //       $push: {
+  //         answers: dataAnswer._id
+  //       }
+  //     })
+  //     .then((dataQuestion) => {
+  //       res.send(dataQuestion)
+  //     })
+  //     .catch((err) => {
+  //       res.send(err)
+  //     })
+  //   })
+  //   .catch((err) => {
+  //     res.send(err)
+  //   })
+  // })
+
 }
 
 const findByAnswer = (req, res) => {

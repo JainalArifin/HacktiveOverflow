@@ -4,25 +4,25 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const findAllQuestion = (req, res) => {
-  let question = jwt.verify(req.headers.token, process.env.SECRET, (err, question)=>{
-    Question.find((err, dataQuestion) => {
-      if(err){
-        res.send(err)
-      }else {
-        res.send(dataQuestion)
-      }
-    })
+  Question.find({})
+  .populate('answerId')
+  .populate('author')
+  .then((dataQuestion) => {
+    res.send(dataQuestion)
+  })
+  .catch((err) => {
+    // res.send()
+    console.log(err);
   })
 }
 
 const createQuestion = (req, res) => {
   let question = jwt.verify(req.headers.token, process.env.SECRET, (err, question) => {
-    console.log('----->', question);
+    // console.log('----->', question);
     Question.create({
       author: question.id,
       judul: req.body.judul,
       content: req.body.content,
-      answer: [],
       suka: [],
       tidakSuka: []
     })

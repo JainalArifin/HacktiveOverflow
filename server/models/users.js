@@ -8,9 +8,9 @@ const userSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: 'questions'
   }],
-  answer: [{
+  answerId: [{
     type: Schema.Types.ObjectId,
-    ref: 'answer'
+    ref: 'answers'
   }]
 })
 
