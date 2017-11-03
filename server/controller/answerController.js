@@ -7,15 +7,16 @@ const jwt = require('jsonwebtoken')
 
 const findAllAnswer = (req, res) => {
   // console.log('masuk controller------->');
-  let answer = jwt.verify(req.headers.token, process.env.SECRET, (err, answer) => {
-    Answer.find()
+  // let answer = jwt.verify(req.headers.token, process.env.SECRET, (err, answer) => {
+    Answer.find({})
+    .populate('author')
     .then((dataAnswer) => {
       res.send(dataAnswer)
     })
     .catch((err) => {
       res.send(err)
     })
-  })
+  // })
 }
 
 const createAnswer = (req, res) => {
@@ -79,6 +80,7 @@ const createAnswer = (req, res) => {
 
 const findByAnswer = (req, res) => {
   Answer.findById(req.params.id)
+  .populate('author')
   .then((dataAnswer) => {
     res.send(dataAnswer)
   })

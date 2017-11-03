@@ -80,10 +80,7 @@ const signUpUser = (req, res) => {
     password: hash
   })
   .then((dataUser) => {
-    res.send({
-      message: 'data berhasil di tambahkan',
-      dataUser: dataUser
-    })
+    res.send(dataUser)
   })
   .catch((err) => {
     res.send(err)
@@ -108,14 +105,9 @@ const loginUser = (req, res) => {
           id: dataUser.id,
           username: dataUser.username
         },process.env.SECRET)
-        res.send({
-          msg: 'login success',
-          data:token
-        })
+        res.send(token)
       }else{
-        res.send({
-          msg: 'password tidak di kenali'
-        })
+        res.send('anda belum register')
       }
     }
   })

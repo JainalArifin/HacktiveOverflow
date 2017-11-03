@@ -24,7 +24,8 @@ const authByid = (req, res, next) => {
   .then((dataQuestion) => {
     // console.log('---------------------------------');
     console.log(dataQuestion, '<--------dataquestion');
-
+    console.log(dataQuestion.author, 'ini id question')
+    console.log(req.id, 'ini req id')
     if(dataQuestion.author == req.id){
       console.log('success');
       next()

@@ -11,6 +11,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var question = require('./routes/question')
 var answer = require('./routes/answer')
+var vote = require('./routes/vote')
 
 var app = express();
 app.use(cors())
@@ -39,6 +40,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/question', question)
 app.use('/answer', answer)
+app.use('/vote', vote)
 
 
 module.exports = app;

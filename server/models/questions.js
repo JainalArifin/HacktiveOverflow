@@ -14,11 +14,11 @@ const questionSchema = new mongoose.Schema({
   }],
   suka: [{
     type: Schema.Types.ObjectId,
-    ref: 'users'
+    ref: 'vote'
   }],
   tidakSuka: [{
     type: Schema.Types.ObjectId,
-    ref: 'users'
+    ref: 'vote'
   }]
 })
 

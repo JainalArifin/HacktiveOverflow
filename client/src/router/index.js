@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import HelloWorld from '@/components/HelloWorld'
-import Home from '@/components/Home'
-import Question from '@/components/Question'
-import Login from '@/components/Login'
+import HelloWorld from '@/components/HelloWorld'
+import Answer from '@/components/Answer'
+import Maincontent from '@/components/Maincontent'
 
 Vue.use(Router)
 
@@ -12,18 +11,19 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/',
-      name: Question,
-      component: Question
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      components: Login
+      name: 'Hello',
+      component: HelloWorld,
+      children: [
+        {
+          path: '',
+          component: Maincontent
+        },
+        {
+          path: ':id',
+          component: Answer,
+          props: true
+        }
+      ]
     }
   ]
 })

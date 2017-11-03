@@ -1,53 +1,41 @@
 <template lang="html">
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">HactiveOverflow</a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand style-font-brand" href="#"> HacktivOverflow</a>
       </div>
-      <ul class="nav navbar-nav navbar-right jarak-button">
-        <li>
-          <Login></Login>
-        </li>
-        <li>
-            <button type="button" name="button" class=" btn btn-danger glyphicon glyphicon-remove" @click="removeUser"> Log Out</button>
-        </li>
-      </ul>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <!-- <li><a href="#">Link</a></li> -->
+        </ul>
+      </div>
+      <!-- buuton -->
+
+      <!-- modal -->
+
     </div>
   </nav>
 </template>
 
 <script>
-import Login from '@/components/Login'
 export default {
-  components: {
-    Login
-  },
-  data () {
-    return {
-      token: localStorage.getItem('token')
-    }
-  },
-  methods: {
-    Register () {
-      this.$router.push('/register')
-    },
-    removeUser () {
-      localStorage.removeItem('token')
-      localStorage.removeItem('fbaccesstoken')
-      this.$router.push('/')
-    }
-  },
-  created () {
-    if (this.token == null) {
-      this.$router.push('/')
-    }
-  }
 }
 </script>
 
 <style lang="css">
-.jarak-button{
-  padding-top: 10px;
-  padding-right: 10px;
+nav.navbar.navbar-default {
+  border-radius: 0px;
+  box-shadow: -7px 1px 18px 5px;
+}
+a.navbar-brand.style-font-brand {
+  font-family: 'Lobster', cursive;
+  font-size: 26px;
 }
 </style>

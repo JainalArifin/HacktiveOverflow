@@ -3,19 +3,20 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from '@/vuex/store'
 import axios from 'axios'
-import FBSignInButton from 'vue-facebook-signin-button'
 
-Vue.use(FBSignInButton)
 Vue.config.productionTip = false
+
 Vue.prototype.$http = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: `http://localhost:3000`
 })
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

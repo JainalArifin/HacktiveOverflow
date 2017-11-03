@@ -12,8 +12,8 @@ router.get('/', questionController.findAllQuestion)
 // router.get('/', questionController.findAllQuestion)
 router.post('/',  questionController.createQuestion)
 router.get('/:id', questionController.findByIdQuestion)
-router.put('/:id', auth.authByid, questionController.updateQuestion)
-router.delete('/:id', auth.authByid, questionController.removeQuestion)
+router.put('/:id', auth.isLogin, questionController.updateQuestion)
+router.delete('/:id', auth.isLogin,  auth.authByid, questionController.removeQuestion)
 
 
 module.exports = router

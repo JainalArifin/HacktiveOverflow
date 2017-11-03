@@ -5,8 +5,14 @@ const jwt = require('jsonwebtoken')
 
 const findAllQuestion = (req, res) => {
   Question.find({})
-  .populate('answerId')
+  .populate({
+    path: 'answerId',
+    populate: {
+      path: 'author'
+    }
+  })
   .populate('author')
+  .populate('suka')
   .then((dataQuestion) => {
     res.send(dataQuestion)
   })
@@ -22,9 +28,7 @@ const createQuestion = (req, res) => {
     Question.create({
       author: question.id,
       judul: req.body.judul,
-      content: req.body.content,
-      suka: [],
-      tidakSuka: []
+      content: req.body.content
     })
     .then((dataQuestion) => {
       res.send({
@@ -40,6 +44,13 @@ const createQuestion = (req, res) => {
 
 const findByIdQuestion = (req, res) => {
   Question.findById(req.params.id)
+  .populate({
+    path: 'answerId',
+    populate: {
+      path: 'author'
+    }
+  })
+  .populate('author')
   .then((dataQuestion) => {
     res.send(dataQuestion)
   })
@@ -49,17 +60,16 @@ const findByIdQuestion = (req, res) => {
 }
 
 const updateQuestion = (req, res) => {
+  console.log(' masuk router')
   Question.findOneAndUpdate({
     _id: ObjectId(req.params.id)
   },{
     judul: req.body.judul,
     content: req.body.content
   })
+  .populate('author')
   .then((dataQuestion) => {
-    res.send({
-      msg: 'Berhasil di update',
-      dataQuestion: dataQuestion
-    })
+    res.send(dataQuestion)
   })
   .catch((err) => {
     console.log(err);

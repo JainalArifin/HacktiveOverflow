@@ -1,53 +1,45 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+  <div>
+    <Navbar></Navbar>
+    <div class="container">
+      <div class="col-md-6">
+        <button type="button" name="button"  data-toggle="modal" data-target="#myModal" class="btn btn-success glyphicon glyphicon-pencil tombol-question"> Questions</button>
+        <Questions></Questions>
+      </div>
+      <div class="col-md-6">
+        <Tombol></Tombol>
+      </div>
+      <div class="row">
+        <div class="col-md-7">
+          <!-- <Maincontent></Maincontent> -->
+          <router-view></router-view>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import Navbar from '@/components/Navbar'
+import Questions from '@/components/Questions'
+// import Maincontent from '@/components/Maincontent'
+import Tombol from '@/components/Tombol'
 export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+  components: {
+    Navbar,
+    Questions,
+    Tombol
+    // Maincontent
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+<style>
+.tombol-question {
+  height: 62px;
+  width: 134px;
+  font-weight: bold;
+  margin-right: 5px;
 }
 </style>
